@@ -1,35 +1,22 @@
 ﻿@model IEnumerable<ButtonGrid.Models.ButtonModel>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ButtonState)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ButtonState)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+
+@foreach (var item in Model)
+{
+  @if (item.ButtonState == 0)
+  {
+    <img src="~/images/Blue-Power-Button-Icon.png" width="150" />
+  }
+  @if (item.ButtonState == 1)
+  {
+    <img src="~/images/Green-Power-Button-Icon.png" width="150" />
+  }
+  @if (item.ButtonState == 2)
+  {
+    <img src="~/images/Red-Power-Button-Icon.png" width="150" />
+  }
+  @if (item.ButtonState == 3)
+  {
+    <img src="~/images/Yellow-Power-Button-Icon.png" width="150" />
+  }
 }
-    </tbody>
-</table>

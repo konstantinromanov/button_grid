@@ -11,14 +11,19 @@ namespace ButtonGrid.Controllers
     {
         static List<ButtonModel> buttons = new List<ButtonModel>();
 
+        Random random = new Random();
+        const int GRID_SIZE = 25;
+
 
         public IActionResult Index()
         {
-            buttons.Add(new ButtonModel { Id = 0, ButtonState = 0 });
-            buttons.Add(new ButtonModel { Id = 1, ButtonState = 3 });
-            buttons.Add(new ButtonModel { Id = 2, ButtonState = 0 });
-            buttons.Add(new ButtonModel { Id = 3, ButtonState = 1 });
-            buttons.Add(new ButtonModel { Id = 4, ButtonState = 2 });
+            if (buttons.Count < GRID_SIZE)
+            {
+                for (int i = 0; i < GRID_SIZE; i++)
+                {
+                    buttons.Add(new ButtonModel { Id = i, ButtonState = random.Next(4) });
+                }
+            }
 
             return View("Index", buttons);
         }
