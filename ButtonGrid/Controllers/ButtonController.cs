@@ -27,5 +27,13 @@ namespace ButtonGrid.Controllers
 
             return View("Index", buttons);
         }
+
+        public IActionResult HandleButtonClick(string buttonNumber)
+        {
+            int bn = int.Parse(buttonNumber);
+
+            buttons.ElementAt(bn).ButtonState = (buttons.ElementAt(bn).ButtonState + 1) % 4;
+            return View("Index", buttons);
+        }
     }
 }

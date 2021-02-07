@@ -3,8 +3,9 @@
 
 <style>
   .game-button {
-    width: 74px;
+    width: 75px;
     text-align: center;
+    border: none;
   }
 
   .game-button-image {
@@ -30,50 +31,28 @@
 @{
   string[] imagenames = { "Blue", "Green", "Red", "Yellow" };
 }
+<form>
+  <div class="button-zone">
 
-<div class="button-zone">
-
-  @for (int i = 0; i < Model.Count(); i++)
-  {
-    // start a new line very five elements
-    if (i % 5 == 0)
+    @for (int i = 0; i < Model.Count(); i++)
     {
-      <div class="line-breaker">
+      // start a new line very five elements
+      if (i % 5 == 0)
+      {
+        <div class="line-breaker"></div>
+      }
 
-      </div>
+      <button class="game-button" name="buttonNumber" value="@Model.ElementAt(i).Id" type="submit" asp-controller="button" asp-action="HandleButtonClick">
+
+        <img class="game-button-image" src="~/images/@imagenames[Model.ElementAt(i).ButtonState]-Power-Button-Icon.png" />
+
+        <div class="button-label">
+          @Model.ElementAt(i).Id , @Model.ElementAt(i).ButtonState
+        </div>
+
+      </button>
+
     }
 
-    <div class="game-button">
-      @*// show the proper image according to the button state property*@
-      <img class="game-button-image" src="~/images/@imagenames[Model.ElementAt(i).ButtonState]-Power-Button-Icon.png" />
-
-      <div class="button-label">
-        @Model.ElementAt(i).Id , @Model.ElementAt(i).ButtonState
-      </div>
-
-    </div>
-
-  }
-
-</div>
-
-
-@*@foreach (var item in Model)
-  {
-    @if (item.ButtonState == 0)
-    {
-      <img src="~/images/Blue-Power-Button-Icon.png" width="150" />
-    }
-    @if (item.ButtonState == 1)
-    {
-      <img src="~/images/Green-Power-Button-Icon.png" width="150" />
-    }
-    @if (item.ButtonState == 2)
-    {
-      <img src="~/images/Red-Power-Button-Icon.png" width="150" />
-    }
-    @if (item.ButtonState == 3)
-    {
-      <img src="~/images/Yellow-Power-Button-Icon.png" width="150" />
-    }
-  }*@
+  </div>
+</form>
