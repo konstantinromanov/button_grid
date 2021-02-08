@@ -25,6 +25,8 @@ namespace ButtonGrid.Controllers
                 }
             }
 
+            ViewBag.Message = "Make all the buttons to be same color!";
+
             return View("Index", buttons);
         }
 
