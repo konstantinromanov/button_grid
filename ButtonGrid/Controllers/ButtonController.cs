@@ -33,6 +33,26 @@ namespace ButtonGrid.Controllers
             int bn = int.Parse(buttonNumber);
 
             buttons.ElementAt(bn).ButtonState = (buttons.ElementAt(bn).ButtonState + 1) % 4;
+
+            bool state = false;
+            for (int i = 0; i < GRID_SIZE - 1; i++)
+            {                
+                if (buttons.ElementAt(0).ButtonState != buttons.ElementAt(i + 1).ButtonState)
+                {
+                    state = true;
+                    break;
+                }
+            }
+
+            if (!state)
+            {
+                ViewBag.Message = "You won!";
+            }
+            else
+            {
+                ViewBag.Message = "Keep pressing!";
+            }
+
             return View("Index", buttons);
         }
     }
